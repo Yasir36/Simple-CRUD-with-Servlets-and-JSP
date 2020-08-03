@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int addUser(UserBean user) {
 		try {
-			PreparedStatement pst = con.prepareStatement("INSERT INTO user(user_fname,user_lname) VALUES(?,?)");
+			PreparedStatement pst = con.prepareStatement("INSERT INTO users(user_fname,user_lname) VALUES(?,?)");
 			pst.setString(1, user.getFirstName());
 			pst.setString(2, user.getLastName());
 			return pst.executeUpdate();
@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int removeUser(int id) {
 		try {
-			PreparedStatement pst = con.prepareStatement("DELETE FROM user WHERE user_id ="+id);
+			PreparedStatement pst = con.prepareStatement("DELETE FROM users WHERE user_id ="+id);
 			return pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
 	public int updateUser(UserBean user, int id) {
 
 		try {
-			PreparedStatement pst = con.prepareStatement("UPDATE user SET user_fname ="+user.getFirstName()+" user_lname="+user.getLastName()+" WHERE user_id = "+user.getUserID());
+			PreparedStatement pst = con.prepareStatement("UPDATE users SET user_fname ="+user.getFirstName()+" user_lname="+user.getLastName()+" WHERE user_id = "+user.getUserID());
 			return pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 		List<UserBean> users = new ArrayList<>();
 		UserBean user;
 		try {
-			PreparedStatement pst = con.prepareStatement("SELECT * FROM user");
+			PreparedStatement pst = con.prepareStatement("SELECT * FROM users");
 			ResultSet rs = pst.executeQuery();
 			while(rs.next())
 			{

@@ -11,6 +11,9 @@ public class UserBean {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	public UserBean() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * @return the userID
 	 */

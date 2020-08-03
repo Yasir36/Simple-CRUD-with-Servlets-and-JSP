@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+
+.edit-link {
+	color :black;
+	
+}
+
+.delete-link {
+	color :black;
+}
+
+.edit-link:hover{
+	color : orange;
+	text-decoration: underline;
+}
+
+.delete-link:hover{
+	color : red;
+	text-decoration: underline;
+}
+
+.add-user-fields {
+	
+}
