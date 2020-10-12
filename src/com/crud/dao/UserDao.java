@@ -8,5 +8,6 @@ public interface UserDao {
 	public int addUser(UserBean user);
 	public int removeUser(int id);
 	public int updateUser(UserBean user, int id);
+	public UserBean getUser(int id);
 	public List<UserBean> getAllUsers();	
 }

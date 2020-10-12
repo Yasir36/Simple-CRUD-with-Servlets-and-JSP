@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.crud.dao.UserDao;
 import com.crud.daoimpl.UserDaoImpl;
 
-/**
- * Servlet implementation class AddServlet
- */
+
 @WebServlet("/ListUser")
 public class ListUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;

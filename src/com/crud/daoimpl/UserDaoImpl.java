@@ -17,6 +17,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public int addUser(UserBean user) {
 		try {
+			System.out.println("in add user");
 			PreparedStatement pst = con.prepareStatement("INSERT INTO users(user_fname,user_lname) VALUES(?,?)");
 			pst.setString(1, user.getFirstName());
 			pst.setString(2, user.getLastName());
@@ -44,13 +45,36 @@ public class UserDaoImpl implements UserDao {
 	public int updateUser(UserBean user, int id) {
 
 		try {
-			PreparedStatement pst = con.prepareStatement("UPDATE users SET user_fname ="+user.getFirstName()+" user_lname="+user.getLastName()+" WHERE user_id = "+user.getUserID());
+			PreparedStatement pst = con.prepareStatement("UPDATE users SET user_fname = ? ,user_lname= ? WHERE user_id = ?");
+			pst.setString(1, user.getFirstName());
+			pst.setString(2, user.getLastName());
+			pst.setInt(3, user.getUserID());
 			return pst.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	@Override
+	public UserBean getUser(int id)
+	{
+		UserBean user;
+		try {
+			PreparedStatement pst = con.prepareStatement("SELECT * FROM users WHERE user_id = ?");
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				user = new UserBean(rs.getInt("user_id"),rs.getString("user_fname"),rs.getString("user_lname"));
+				return user;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override

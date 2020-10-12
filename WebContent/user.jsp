@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href = "style.css">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -36,7 +36,10 @@
 		</div>
 	</nav>
 	<div class="container" style="margin-top: 100px">
-		<button href="UserServlet" type="button" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop" style="float:left; margin-bottom:10px">ADD USER</button>
+
+			<a href="UserController?action=/AddNewUser">ADD	USER</a>
+
+
 		<table class="table table-bordered table-hover">
 			<thead class="thead-dark">
 				<tr>
@@ -47,59 +50,19 @@
 				</tr>
 			</thead>
 			<tbody>
-            <c:forEach items="${users}" var="user">
-                <tr>
-                    <td><c:out value="${user.userID}" /></td>
-                    <td><c:out value="${user.firstName}" /></td>
-                    <td><c:out value="${user.lastName}" /></td>
-                    <td >
-                    	 <a href="/UserServlet?action=edit" class="edit-link">Edit</a>
-                    	 <a href="DeleteUser?id=${user.userID }" class="delete-link">Delete</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </tbody>
+				<c:forEach items="${users}" var="user">
+					<tr>
+						<td><c:out value="${user.userID}" /></td>
+						<td><c:out value="${user.firstName}" /></td>
+						<td><c:out value="${user.lastName}" /></td>
+						<td><a href="UserController?action=/UpdateUser&id=${user.userID}" class="edit-link">Edit</a>
+						<a	href="UserController?action=/Delete&id=${user.userID}"
+							class="delete-link">Delete</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
-	<!-- Modal -->
-	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
-		data-keyboard="false" tabindex="-1" role="dialog"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				
-				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">Add User</h5>				
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<form action="AddUser">
-				<div class="modal-body" >
-				
-					  <div class="form-group">
-					    <label for="firstNameInput">First Name</label>
-					    <input type="text" class="form-control" name="firstName" placeholder="Enter First Name">
-					  </div>
-					  <div class="form-group">
-					    <label for="lastNameInput">Last Name</label>
-					    <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name">
-					  </div>
-				    
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" name="AddButton" value="addUser">Add</button>
-				</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-
-
 
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

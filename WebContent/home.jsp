@@ -7,6 +7,6 @@
 <title>Index</title>
 </head>
 <body>
-<jsp:forward page="/ListUser"/>
+	<jsp:forward page="/ListUser"/>
 </body>
 </html>
